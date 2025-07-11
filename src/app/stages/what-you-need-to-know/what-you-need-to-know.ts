@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-what-you-need-to-know',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './what-you-need-to-know.scss'
 })
 export class WhatYouNeedToKnow {
+  constructor(private router: Router) {}
 
+  goToLanding() {
+    this.router.navigate(['']);
+  }
 }

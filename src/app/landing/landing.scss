@@ -73,3 +73,13 @@
 .cancel-btn:hover {
   background: #f5f5f5;
 }
+
+.section-link {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.section-link:hover {
+  background: #f5f5f5;
+}
