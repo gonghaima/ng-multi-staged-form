@@ -1,1 +1,41 @@
-<p>safety works!</p>
+<div class="safety-container" [formGroup]="form">
+  <button class="back-btn" (click)="goToLanding()">&lt; Back</button>
+  <h1>Application for illness support</h1>
+  <h2>Safety</h2>
+
+  <div class="alert">
+    <span class="alert-icon">&#9888;</span>
+    Call 000 if you’re in immediate danger.
+  </div>
+
+  <div class="info-text">
+    <p>We need to ask you a question about your safety and wellbeing. We ask this question to all customers applying for illness support. Your response is optional and will be kept confidential.</p>
+    <p>We ask this to better understand your situation and provide the right information, services and support to people whose safety and wellbeing may be at risk as a result of family and domestic violence due to a partner, ex-partner or family member.</p>
+    <p class="question"><b>Are you experiencing family and domestic violence, or do you have concerns about your or your family’s safety? (optional)</b></p>
+    <div class="radio-group">
+      <label>
+        <input type="radio" formControlName="safetyAnswer" value="yes" />
+        Yes
+      </label>
+      <label>
+        <input type="radio" formControlName="safetyAnswer" value="no" />
+        No
+      </label>
+    </div>
+  </div>
+
+  <div *ngIf="safetyAnswer === 'yes'" class="info-box">
+    <span class="info-icon">&#9432;</span>
+    <span>
+      If you have family and domestic violence concerns related to someone involved in this application, we can support you.<br /><br />
+      When you lodge your application, we must contact the other parent to discuss the illness support arrangements. If you would like to discuss your options, call us on <b>131 272</b> before lodging your application.<br /><br />
+      If you’re going through a difficult time, our <a href="#" target="_blank">Social Work Services</a> offer counselling, support and information at no cost. You can find more information about <a href="#" target="_blank">Family and Domestic Violence</a> on our website.<br /><br />
+      To access 24/7 counselling and support call <b>1800RESPECT</b> on <b>1800 737 732</b>.
+    </span>
+  </div>
+
+  <div class="button-row">
+    <button class="next-btn" (click)="goToLanding()">Next</button>
+    <button class="cancel-btn">Cancel application</button>
+  </div>
+</div>
