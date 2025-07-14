@@ -5,31 +5,49 @@
 
   <div class="alert">
     <span>⚠️</span>
-    You can only save your application after you’ve completed the ‘Your details’ section.
+    You can only save your application after you’ve completed the ‘Your details’
+    section.
   </div>
 
   <div class="deadline">
-    You must submit your application by <b>8:58 AEDT on 09 Jul 2025</b> or your application will be cancelled.
+    You must submit your application by <b>8:58 AEDT on 09 Jul 2025</b> or your
+    application will be cancelled.
   </div>
 
-  <div class="progress">
-    You have completed 0 of 11 sections.
-  </div>
+  <div class="progress">You have completed 0 of 11 sections.</div>
 
   <div class="sections">
     <h2>1. Before you start</h2>
-    <a class="section-row section-link" routerLink="/what-you-need-to-know">
-      <span>What you need to know</span>
-      <span class="status">Not started</span>
-    </a>
-    <div class="section-row locked">
-      <span>Safety</span>
-      <span class="lock">🔒 Can't start yet</span>
-    </div>
-    <div class="section-row locked">
-      <span>Eligibility</span>
-      <span class="lock">🔒 Can't start yet</span>
-    </div>
+    <ng-container *ngFor="let section of sections()">
+      <a *ngIf="section.key === 'whatYouNeedToKnow'"
+         class="section-row section-link"
+         [routerLink]="['/what-you-need-to-know']">
+        <span>{{ section.label }}</span>
+        <span class="status">
+          <ng-container [ngSwitch]="section.status">
+            <span *ngSwitchCase="'notStarted'">Not started</span>
+            <span *ngSwitchCase="'complete'">Complete</span>
+            <span *ngSwitchCase="'cannotStart'">Can't start yet</span>
+          </ng-container>
+        </span>
+      </a>
+      <a *ngIf="section.key === 'safety' && (section.status === 'notStarted' || section.status === 'complete')"
+         class="section-row section-link"
+         [routerLink]="['/safety']">
+        <span>{{ section.label }}</span>
+        <span class="status">
+          <ng-container [ngSwitch]="section.status">
+            <span *ngSwitchCase="'notStarted'">Not started</span>
+            <span *ngSwitchCase="'complete'">Complete</span>
+          </ng-container>
+        </span>
+      </a>
+      <div *ngIf="section.key === 'safety' && section.status === 'cannotStart'"
+           class="section-row locked">
+        <span>{{ section.label }}</span>
+        <span class="status">🔒 Can't start yet</span>
+      </div>
+    </ng-container>
 
     <h2>2. Prepare application</h2>
     <div class="section-row locked">
@@ -47,6 +65,11 @@
       <span>Review and submit</span>
       <span class="lock">🔒 Can't start yet</span>
     </div>
+  </div>
+
+  <div style="display: flex; gap: 1rem; margin-top: 2rem">
+    <button (click)="onBack()">Back</button>
+    <button (click)="onNext()">Next</button>
   </div>
 
   <button class="cancel-btn">Cancel application</button>

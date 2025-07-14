@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SectionStatusService } from '../../shared/section-status.service';
 
 @Component({
   selector: 'app-what-you-need-to-know',
@@ -8,9 +9,11 @@ import { Router } from '@angular/router';
   styleUrl: './what-you-need-to-know.scss'
 })
 export class WhatYouNeedToKnow {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private sectionStatus: SectionStatusService) {}
 
   goToLanding() {
+    this.sectionStatus.setStatus('whatYouNeedToKnow', 'complete');
+    this.sectionStatus.setStatus('safety', 'notStarted');
     this.router.navigate(['']);
   }
 }
