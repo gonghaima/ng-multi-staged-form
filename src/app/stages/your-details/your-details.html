@@ -1,1 +1,97 @@
-<p>your-details works!</p>
+<div class="your-details-container" [formGroup]="form">
+  <button class="back-btn">&lt; Back</button>
+  <h1>Application for illness support</h1>
+  <h2>Your personal details</h2>
+
+  <div class="info-text">
+    <p>We need to ask you some questions about your personal details.</p>
+    <p><em>You must answer all questions unless they’re marked as optional.</em></p>
+  </div>
+
+  <div class="form-group">
+    <label for="title">Title (optional)</label>
+    <select id="title" formControlName="title">
+      <option value="">Select an option</option>
+      <option *ngFor="let opt of titleOptions" [value]="opt">{{ opt }}</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="firstName">First name</label>
+    <input id="firstName" type="text" formControlName="firstName" />
+    <div class="validation-error" *ngIf="f['firstName'].invalid && (f['firstName'].dirty || f['firstName'].touched)">
+      First name is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="middleName">Middle name (optional)</label>
+    <input id="middleName" type="text" formControlName="middleName" />
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last name</label>
+    <input id="lastName" type="text" formControlName="lastName" />
+    <div class="validation-error" *ngIf="f['lastName'].invalid && (f['lastName'].dirty || f['lastName'].touched)">
+      Last name is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Have you had a previous last name? (optional)</label>
+    <label><input type="radio" formControlName="previousLastName" value="yes" /> Yes</label>
+    <label><input type="radio" formControlName="previousLastName" value="no" /> No</label>
+  </div>
+
+  <div class="form-group">
+    <label>Do you have a preferred name? (optional)</label>
+    <label><input type="radio" formControlName="preferredName" value="yes" /> Yes</label>
+    <label><input type="radio" formControlName="preferredName" value="no" /> No</label>
+  </div>
+
+  <div class="form-group">
+    <label for="dateOfBirth">Date of birth</label>
+    <input id="dateOfBirth" type="date" formControlName="dateOfBirth" />
+    <div class="validation-error" *ngIf="f['dateOfBirth'].invalid && (f['dateOfBirth'].dirty || f['dateOfBirth'].touched)">
+      Date of birth is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Gender</label>
+    <label><input type="radio" formControlName="gender" value="male" /> Male</label>
+    <label><input type="radio" formControlName="gender" value="female" /> Female</label>
+    <label><input type="radio" formControlName="gender" value="other" /> Other</label>
+    <div class="validation-error" *ngIf="f['gender'].invalid && (f['gender'].dirty || f['gender'].touched)">
+      Gender is required.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="tfn">Tax File Number (TFN) (optional)</label>
+    <input id="tfn" type="text" formControlName="tfn" />
+  </div>
+
+  <div class="form-group">
+    <label>Do you know your illness Support Reference Number (CSRN)? (optional)</label>
+    <label><input type="radio" formControlName="csrn" value="yes" /> Yes</label>
+    <label><input type="radio" formControlName="csrn" value="no" /> No</label>
+  </div>
+
+  <div class="form-group">
+    <label>Do you know your Centrelink Reference Number (CRN)? (optional)</label>
+    <label><input type="radio" formControlName="crn" value="yes" /> Yes</label>
+    <label><input type="radio" formControlName="crn" value="no" /> No</label>
+  </div>
+
+  <div class="form-group">
+    <label>Do you have, or have you had any illness support cases? (optional)</label>
+    <label><input type="radio" formControlName="hadCase" value="yes" /> Yes</label>
+    <label><input type="radio" formControlName="hadCase" value="no" /> No</label>
+  </div>
+
+  <div class="button-row">
+    <button class="next-btn" [disabled]="form.invalid">Next</button>
+    <button class="cancel-btn">Cancel application</button>
+  </div>
+</div>
