@@ -7,6 +7,7 @@ interface Section {
   key: string;
   label: string;
   status: SectionStatus;
+  route: string;
 }
 
 @Component({
@@ -21,11 +22,19 @@ export class Landing {
       key: 'whatYouNeedToKnow',
       label: 'What you need to know',
       status: this.sectionStatus.sectionStatus()['whatYouNeedToKnow'],
+      route: '/what-you-need-to-know',
     },
     {
       key: 'safety',
       label: 'Safety',
       status: this.sectionStatus.sectionStatus()['safety'],
+      route: '/safety',
+    },
+    {
+      key: 'yourDetails',
+      label: 'Your details',
+      status: this.sectionStatus.sectionStatus()['yourDetails'],
+      route: '/your-details',
     },
     // ...add more sections as needed
   ]);

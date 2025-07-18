@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { SectionStatusService } from '../../shared/section-status.service';
 
 @Component({
   selector: 'app-safety',
@@ -12,7 +13,11 @@ import { Router } from '@angular/router';
 export class Safety {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private sectionStatus: SectionStatusService
+  ) {
     this.form = this.fb.group({
       safetyAnswer: [undefined]
     });
@@ -23,9 +28,9 @@ export class Safety {
   }
 
   goToLanding() {
-    this.form.markAllAsTouched();
-    if (this.form.valid) {
-      this.router.navigate(['']);
-    }
+    // Mark Safety as complete and Your Details as notStarted
+    this.sectionStatus.setStatus('safety', 'complete');
+    this.sectionStatus.setStatus('yourDetails', 'notStarted');
+    this.router.navigate(['']);
   }
 }

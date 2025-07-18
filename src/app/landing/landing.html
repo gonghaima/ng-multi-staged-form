@@ -21,7 +21,7 @@
     <ng-container *ngFor="let section of sections()">
       <a *ngIf="section.key === 'whatYouNeedToKnow'"
          class="section-row section-link"
-         [routerLink]="['/what-you-need-to-know']">
+         [routerLink]="[section.route]">
         <span>{{ section.label }}</span>
         <span class="status">
           <ng-container [ngSwitch]="section.status">
@@ -33,7 +33,7 @@
       </a>
       <a *ngIf="section.key === 'safety' && (section.status === 'notStarted' || section.status === 'complete')"
          class="section-row section-link"
-         [routerLink]="['/safety']">
+         [routerLink]="[section.route]">
         <span>{{ section.label }}</span>
         <span class="status">
           <ng-container [ngSwitch]="section.status">
@@ -43,6 +43,22 @@
         </span>
       </a>
       <div *ngIf="section.key === 'safety' && section.status === 'cannotStart'"
+           class="section-row locked">
+        <span>{{ section.label }}</span>
+        <span class="status">🔒 Can't start yet</span>
+      </div>
+      <a *ngIf="section.key === 'yourDetails' && (section.status === 'notStarted' || section.status === 'complete')"
+         class="section-row section-link"
+         [routerLink]="[section.route]">
+        <span>{{ section.label }}</span>
+        <span class="status">
+          <ng-container [ngSwitch]="section.status">
+            <span *ngSwitchCase="'notStarted'">Not started</span>
+            <span *ngSwitchCase="'complete'">Complete</span>
+          </ng-container>
+        </span>
+      </a>
+      <div *ngIf="section.key === 'yourDetails' && section.status === 'cannotStart'"
            class="section-row locked">
         <span>{{ section.label }}</span>
         <span class="status">🔒 Can't start yet</span>
