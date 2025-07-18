@@ -17,7 +17,7 @@ interface Section {
   styleUrl: './landing.scss',
 })
 export class Landing {
-  sections = computed(() => [
+  sections1 = computed(() => [
     {
       key: 'whatYouNeedToKnow',
       label: 'What you need to know',
@@ -30,13 +30,16 @@ export class Landing {
       status: this.sectionStatus.sectionStatus()['safety'],
       route: '/safety',
     },
+  ]);
+
+  sections2 = computed(() => [
     {
       key: 'yourDetails',
       label: 'Your details',
-      status: this.sectionStatus.sectionStatus()['yourDetails'],
+      status: this.sectionStatus.sectionStatus()['yourDetails'] ?? 'cannotStart',
       route: '/your-details',
     },
-    // ...add more sections as needed
+    // Add more for section 2 as needed
   ]);
 
   constructor(public sectionStatus: SectionStatusService) {}
