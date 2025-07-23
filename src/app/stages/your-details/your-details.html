@@ -1,5 +1,5 @@
 <div class="your-details-container" [formGroup]="form">
-  <button class="back-btn">&lt; Back</button>
+  <button class="back-btn" (click)="goToLanding()">&lt; Back</button>
   <h1>Application for illness support</h1>
   <h2>Your personal details</h2>
 
@@ -91,7 +91,7 @@
   </div>
 
   <div class="button-row">
-    <button class="next-btn" [disabled]="form.invalid">Next</button>
+    <button class="next-btn" [disabled]="form.invalid" (click)="goToLanding()">Next</button>
     <button class="cancel-btn">Cancel application</button>
   </div>
 </div>

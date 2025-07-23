@@ -12,7 +12,9 @@ export class SectionStatusService {
   private sectionStatusSignal = signal<Record<string, SectionStatus>>({
     whatYouNeedToKnow: 'notStarted',
     safety: 'cannotStart',
-    // ...other sections
+    yourDetails: 'cannotStart',
+    income: 'cannotStart',
+    reviewAndSubmit: 'cannotStart',
   });
 
   getStatus(key: string) {

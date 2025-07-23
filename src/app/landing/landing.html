@@ -52,13 +52,14 @@
 
     <h2>2. Prepare application</h2>
     <ng-container *ngFor="let section of sections2()">
-      @if (section.status === 'notStarted' || section.status === 'complete') {
+      @if (section.status === 'notStarted' || section.status === 'complete' || section.status === 'inProgress') {
         <a class="section-row section-link" [routerLink]="[section.route]">
           <span>{{ section.label }}</span>
           <span class="status">
             <ng-container [ngSwitch]="section.status">
               <span *ngSwitchCase="'notStarted'">Not started</span>
               <span *ngSwitchCase="'complete'">Complete</span>
+              <span *ngSwitchCase="'inProgress'">In progress</span>
             </ng-container>
           </span>
         </a>
@@ -73,10 +74,26 @@
     <!-- Repeat for other sections... -->
 
     <h2>3. Submit registration</h2>
-    <div class="section-row locked">
-      <span>Review and submit</span>
-      <span class="lock">🔒 Can't start yet</span>
-    </div>
+    <ng-container *ngFor="let section of sections3()">
+      @if (section.status === 'notStarted' || section.status === 'complete' || section.status === 'inProgress') {
+        <a class="section-row section-link" [routerLink]="[section.route]">
+          <span>{{ section.label }}</span>
+          <span class="status">
+            <ng-container [ngSwitch]="section.status">
+              <span *ngSwitchCase="'notStarted'">Not started</span>
+              <span *ngSwitchCase="'complete'">Complete</span>
+              <span *ngSwitchCase="'inProgress'">In progress</span>
+            </ng-container>
+          </span>
+        </a>
+      }
+      @if (section.status === 'cannotStart') {
+        <div class="section-row locked">
+          <span>{{ section.label }}</span>
+          <span class="status">🔒 Can't start yet</span>
+        </div>
+      }
+    </ng-container>
   </div>
 
   <!-- Remove onBack/onNext buttons that are not implemented -->

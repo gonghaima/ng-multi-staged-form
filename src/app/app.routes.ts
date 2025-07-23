@@ -4,6 +4,7 @@ import { Income } from './stages/income/income';
 import { Landing } from './landing/landing';
 import { WhatYouNeedToKnow } from './stages/what-you-need-to-know/what-you-need-to-know';
 import { Safety } from './stages/safety/safety';
+import { ReviewAndSubmit } from './stages/review-and-submit/review-and-submit';
 
 export const routes: Routes = [
   { path: '', component: Landing },
@@ -11,4 +12,5 @@ export const routes: Routes = [
   { path: 'income', component: Income },
   { path: 'what-you-need-to-know', component: WhatYouNeedToKnow },
   { path: 'safety', component: Safety },
+  { path: 'review-and-submit', component: ReviewAndSubmit },
 ];

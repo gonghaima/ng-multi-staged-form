@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SectionStatusService } from '../../shared/section-status.service';
+import { FormDataService } from '../../shared/form-data.service';
 
 @Component({
   selector: 'app-safety',
@@ -16,7 +17,8 @@ export class Safety {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private sectionStatus: SectionStatusService
+    private sectionStatus: SectionStatusService,
+    private formDataService: FormDataService
   ) {
     this.form = this.fb.group({
       safetyAnswer: [undefined]
@@ -28,6 +30,11 @@ export class Safety {
   }
 
   goToLanding() {
+    // Save form data
+    this.formDataService.setSafetyData({
+      safetyAnswer: this.safetyAnswer
+    });
+    
     // Mark Safety as complete and Your Details as notStarted
     this.sectionStatus.setStatus('safety', 'complete');
     this.sectionStatus.setStatus('yourDetails', 'notStarted');

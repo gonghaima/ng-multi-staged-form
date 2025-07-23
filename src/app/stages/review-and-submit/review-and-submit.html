@@ -1,0 +1,92 @@
+<div class="review-container">
+  <button class="back-btn" (click)="goToLanding()">&lt; Back</button>
+  
+  <h1>Application for illness support</h1>
+  <h2>Review and submit</h2>
+  <p class="description">Before you submit your application, you need to review all the details you've provided.</p>
+
+  <!-- Safety Section -->
+  <div class="section">
+    <h3>Safety</h3>
+    <div class="question-row">
+      <span class="question">Are you, or has anyone else been, concerned about your or your family safety? (optional)</span>
+      <span class="answer">{{ getYesNoDisplay(safetyData()?.safetyAnswer) }}</span>
+    </div>
+    <button class="edit-btn" (click)="editSafety()">
+      <span class="edit-icon">✏️</span>
+      Edit safety
+    </button>
+  </div>
+
+  <!-- Eligibility Section -->
+  <div class="section">
+    <h3>Eligibility</h3>
+    <div class="question-row">
+      <span class="question">Are any of the illness you are claiming for married or living in a de facto relationship?</span>
+      <span class="answer">{{ getYesNoDisplay(yourDetailsData()?.hadCase) }}</span>
+    </div>
+    <div class="question-row">
+      <span class="question">Are any of the illness you are claiming for over the age of 18?</span>
+      <span class="answer">No</span>
+    </div>
+    <div class="question-row">
+      <span class="question">Are you a parent of all the illness you are claiming for?</span>
+      <span class="answer">Yes</span>
+    </div>
+    <div class="question-row">
+      <span class="question">Are any illness you are applying for cared for under a welfare order?</span>
+      <span class="answer">Yes</span>
+    </div>
+    <div class="question-row">
+      <span class="question">Are you a resident of Australia?</span>
+      <span class="answer">Yes</span>
+    </div>
+    <div class="question-row">
+      <span class="question">Is the other party a resident of Australia?</span>
+      <span class="answer">Yes</span>
+    </div>
+  </div>
+
+  <!-- Your Details Section -->
+  <div class="section">
+    <h3>Your Details</h3>
+    <div class="question-row">
+      <span class="question">Title</span>
+      <span class="answer">{{ getDisplayValue(yourDetailsData()?.title) }}</span>
+    </div>
+    <div class="question-row">
+      <span class="question">First Name</span>
+      <span class="answer">{{ getDisplayValue(yourDetailsData()?.firstName) }}</span>
+    </div>
+    <div class="question-row">
+      <span class="question">Middle Name</span>
+      <span class="answer">{{ getDisplayValue(yourDetailsData()?.middleName) }}</span>
+    </div>
+    <div class="question-row">
+      <span class="question">Last Name</span>
+      <span class="answer">{{ getDisplayValue(yourDetailsData()?.lastName) }}</span>
+    </div>
+    <div class="question-row">
+      <span class="question">Date of Birth</span>
+      <span class="answer">{{ getDisplayValue(yourDetailsData()?.dateOfBirth) }}</span>
+    </div>
+    <div class="question-row">
+      <span class="question">Gender</span>
+      <span class="answer">{{ getGenderDisplay(yourDetailsData()?.gender) }}</span>
+    </div>
+    <div class="question-row">
+      <span class="question">TFN</span>
+      <span class="answer">{{ getDisplayValue(yourDetailsData()?.tfn) }}</span>
+    </div>
+    <button class="edit-btn" (click)="editYourDetails()">
+      <span class="edit-icon">✏️</span>
+      Edit your details
+    </button>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="button-row">
+    <button class="submit-btn" (click)="submitApplication()">Submit Application</button>
+    <button class="cancel-btn" (click)="goToLanding()">Cancel</button>
+  </div>
+</div>

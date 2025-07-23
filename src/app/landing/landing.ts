@@ -42,5 +42,14 @@ export class Landing {
     // Add more for section 2 as needed
   ]);
 
+  sections3 = computed(() => [
+    {
+      key: 'reviewAndSubmit',
+      label: 'Review and submit',
+      status: this.sectionStatus.sectionStatus()['reviewAndSubmit'] ?? 'cannotStart',
+      route: '/review-and-submit',
+    },
+  ]);
+
   constructor(public sectionStatus: SectionStatusService) {}
 }
