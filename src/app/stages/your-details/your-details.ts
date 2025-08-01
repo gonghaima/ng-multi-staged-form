@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { FormDataService } from '../../shared/form-data.service';
   templateUrl: './your-details.html',
   styleUrl: './your-details.scss'
 })
-export class YourDetails {
+export class YourDetails implements OnInit {
   form: FormGroup;
   titleOptions = ['Mr', 'Mrs', 'Ms', 'Miss', 'Dr', 'Other'];
 
@@ -35,6 +35,13 @@ export class YourDetails {
       crn: [undefined],
       hadCase: [undefined],
     });
+  }
+
+  ngOnInit() {
+    const existing = this.formDataService.getYourDetailsData();
+    if (existing) {
+      this.form.patchValue(existing);
+    }
   }
 
   get f() { return this.form.controls; }
