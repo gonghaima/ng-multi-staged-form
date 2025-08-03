@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { FormDataService } from '../../shared/form-data.service';
   templateUrl: './safety.html',
   styleUrl: './safety.scss'
 })
-export class Safety {
+export class Safety implements OnInit {
   form: FormGroup;
 
   constructor(
@@ -23,6 +23,13 @@ export class Safety {
     this.form = this.fb.group({
       safetyAnswer: [undefined]
     });
+  }
+
+  ngOnInit() {
+    const existing = this.formDataService.getSafetyData();
+    if (existing) {
+      this.form.patchValue(existing);
+    }
   }
 
   get safetyAnswer() {
