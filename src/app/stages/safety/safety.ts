@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SectionStatusService } from '../../shared/section-status.service';
@@ -9,7 +14,7 @@ import { FormDataService } from '../../shared/form-data.service';
   selector: 'app-safety',
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './safety.html',
-  styleUrl: './safety.scss'
+  styleUrl: './safety.scss',
 })
 export class Safety implements OnInit {
   form: FormGroup;
@@ -21,7 +26,7 @@ export class Safety implements OnInit {
     private formDataService: FormDataService
   ) {
     this.form = this.fb.group({
-      safetyAnswer: [undefined]
+      safetyAnswer: [undefined],
     });
   }
 
@@ -39,12 +44,17 @@ export class Safety implements OnInit {
   goToLanding() {
     // Save form data
     this.formDataService.setSafetyData({
-      safetyAnswer: this.safetyAnswer
+      safetyAnswer: this.safetyAnswer,
     });
-    
-    // Mark Safety as complete and Your Details as notStarted
+
+    // Mark Safety as complete
     this.sectionStatus.setStatus('safety', 'complete');
-    this.sectionStatus.setStatus('yourDetails', 'notStarted');
+
+    // Only set yourDetails to notStarted if it is currently cannotStart or not set
+    const currentStatus = this.sectionStatus.getStatus('yourDetails');
+    if (currentStatus === 'cannotStart' || !currentStatus) {
+      this.sectionStatus.setStatus('yourDetails', 'notStarted');
+    }
     this.router.navigate(['']);
   }
 }

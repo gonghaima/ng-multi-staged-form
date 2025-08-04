@@ -22,7 +22,10 @@ export class SectionStatusService {
   }
 
   setStatus(key: string, status: SectionStatus) {
-    this.sectionStatusSignal.update((current) => ({ ...current, [key]: status }));
+    this.sectionStatusSignal.update((current) => ({
+      ...current,
+      [key]: status,
+    }));
   }
 
   getAll() {

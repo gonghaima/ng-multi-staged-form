@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { SectionStatusService } from '../../shared/section-status.service';
@@ -9,7 +14,7 @@ import { FormDataService } from '../../shared/form-data.service';
   selector: 'app-your-details',
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './your-details.html',
-  styleUrl: './your-details.scss'
+  styleUrl: './your-details.scss',
 })
 export class YourDetails implements OnInit {
   form: FormGroup;
@@ -44,7 +49,9 @@ export class YourDetails implements OnInit {
     }
   }
 
-  get f() { return this.form.controls; }
+  get f() {
+    return this.form.controls;
+  }
 
   goToLanding() {
     // Always save form data (even if incomplete) so users don't lose progress
@@ -62,7 +69,7 @@ export class YourDetails implements OnInit {
       crn: this.form.get('crn')?.value,
       hadCase: this.form.get('hadCase')?.value,
     });
-    
+
     // Only mark as complete if form is valid
     if (this.form.valid) {
       this.sectionStatus.setStatus('yourDetails', 'complete');
@@ -72,7 +79,7 @@ export class YourDetails implements OnInit {
       // If form is invalid, mark as in progress
       this.sectionStatus.setStatus('yourDetails', 'inProgress');
     }
-    
+
     this.router.navigate(['']);
   }
 }
