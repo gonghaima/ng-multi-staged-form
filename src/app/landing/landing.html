@@ -48,6 +48,23 @@
           <span class="status">🔒 Can't start yet</span>
         </div>
       }
+      @if (section.key === 'eligibility' && (section.status === 'notStarted' || section.status === 'complete')) {
+        <a class="section-row section-link" [routerLink]="[section.route]">
+          <span>{{ section.label }}</span>
+          <span class="status">
+            <ng-container [ngSwitch]="section.status">
+              <span *ngSwitchCase="'notStarted'">Not started</span>
+              <span *ngSwitchCase="'complete'">Complete</span>
+            </ng-container>
+          </span>
+        </a>
+      }
+      @if (section.key === 'eligibility' && section.status === 'cannotStart') {
+        <div class="section-row locked">
+          <span>{{ section.label }}</span>
+          <span class="status">🔒 Can't start yet</span>
+        </div>
+      }
     </ng-container>
 
     <h2>2. Prepare application</h2>

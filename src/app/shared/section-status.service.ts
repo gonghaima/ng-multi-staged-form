@@ -11,6 +11,7 @@ export type SectionStatus =
 export class SectionStatusService {
   private sectionStatusSignal = signal<Record<string, SectionStatus>>({
     whatYouNeedToKnow: 'notStarted',
+    eligibility: 'cannotStart',
     safety: 'cannotStart',
     yourDetails: 'cannotStart',
     income: 'cannotStart',

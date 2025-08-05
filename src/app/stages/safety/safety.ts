@@ -50,6 +50,12 @@ export class Safety implements OnInit {
     // Mark Safety as complete
     this.sectionStatus.setStatus('safety', 'complete');
 
+    // Enable Eligibility section when Safety is completed
+    const currentEligibilityStatus = this.sectionStatus.getStatus('eligibility');
+    if (currentEligibilityStatus === 'cannotStart' || !currentEligibilityStatus) {
+      this.sectionStatus.setStatus('eligibility', 'notStarted');
+    }
+
     // Only set yourDetails to notStarted if it is currently cannotStart or not set
     const currentStatus = this.sectionStatus.getStatus('yourDetails');
     if (currentStatus === 'cannotStart' || !currentStatus) {

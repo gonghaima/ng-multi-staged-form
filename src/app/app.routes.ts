@@ -5,12 +5,14 @@ import { Landing } from './landing/landing';
 import { WhatYouNeedToKnow } from './stages/what-you-need-to-know/what-you-need-to-know';
 import { Safety } from './stages/safety/safety';
 import { ReviewAndSubmit } from './stages/review-and-submit/review-and-submit';
+import { Eligibility } from './stages/eligibility/eligibility';
 
 export const routes: Routes = [
   { path: '', component: Landing },
   { path: 'your-details', component: YourDetails },
   { path: 'income', component: Income },
   { path: 'what-you-need-to-know', component: WhatYouNeedToKnow },
+  { path: 'eligibility', component: Eligibility },
   { path: 'safety', component: Safety },
   { path: 'review-and-submit', component: ReviewAndSubmit },
 ];

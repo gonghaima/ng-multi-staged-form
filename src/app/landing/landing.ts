@@ -30,6 +30,12 @@ export class Landing {
       status: this.sectionStatus.sectionStatus()['safety'],
       route: '/safety',
     },
+    {
+      key: 'eligibility',
+      label: 'Eligibility',
+      status: this.sectionStatus.sectionStatus()['eligibility'],
+      route: '/eligibility',
+    },
   ]);
 
   sections2 = computed(() => [

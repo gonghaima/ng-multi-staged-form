@@ -30,41 +30,57 @@
   <div class="section">
     <h3>Eligibility</h3>
     <div class="question-row">
+      <span class="question">Are you a resident of Australia?</span>
+      <span class="answer"
+        >{{ getYesNoDisplay(eligibilityData().isAustralianResident) }}</span
+      >
+    </div>
+    <div class="question-row">
       <span class="question"
-        >Are any of the illness you are claiming for married or living in a de
+        >Are any of the patient you're claiming for over the age of 18?</span
+      >
+      <span class="answer"
+        >{{ getYesNoDisplay(eligibilityData().hasPatientOver18) }}</span
+      >
+    </div>
+    <div class="question-row">
+      <span class="question"
+        >Are any of the patient you're claiming for married or living in a de
         facto relationship?</span
       >
       <span class="answer"
-        >{{ getYesNoDisplay(yourDetailsData().hadCase) }}</span
+        >{{ getYesNoDisplay(eligibilityData().hasPatientInRelationship) }}</span
       >
     </div>
     <div class="question-row">
       <span class="question"
-        >Are any of the illness you are claiming for over the age of 18?</span
+        >Are you a parent of all the patient you're claiming for?</span
       >
-      <span class="answer">No</span>
+      <span class="answer"
+        >{{ getYesNoDisplay(eligibilityData().isParentOfAllPatient) }}</span
+      >
     </div>
     <div class="question-row">
       <span class="question"
-        >Are you a parent of all the illness you are claiming for?</span
-      >
-      <span class="answer">Yes</span>
-    </div>
-    <div class="question-row">
-      <span class="question"
-        >Are any illness you are applying for cared for under a welfare
+        >Are any patient you're claiming for cared for under a welfare
         order?</span
       >
-      <span class="answer">Yes</span>
-    </div>
-    <div class="question-row">
-      <span class="question">Are you a resident of Australia?</span>
-      <span class="answer">Yes</span>
+      <span class="answer"
+        >{{ getYesNoDisplay(eligibilityData().hasPatientUnderWelfareOrder)
+        }}</span
+      >
     </div>
     <div class="question-row">
       <span class="question">Is the other party a resident of Australia?</span>
-      <span class="answer">Yes</span>
+      <span class="answer"
+        >{{ getYesNoDisplay(eligibilityData().isOtherPartyAustralianResident)
+        }}</span
+      >
     </div>
+    <button class="edit-btn" (click)="editEligibility()">
+      <span class="edit-icon">✏️</span>
+      Edit eligibility
+    </button>
   </div>
 
   <!-- Your Details Section -->

@@ -1,7 +1,7 @@
 import { Component, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { FormDataService, SafetyData, YourDetailsData } from '../../shared/form-data.service';
+import { FormDataService, SafetyData, YourDetailsData, EligibilityData } from '../../shared/form-data.service';
 
 @Component({
   selector: 'app-review-and-submit',
@@ -12,6 +12,7 @@ import { FormDataService, SafetyData, YourDetailsData } from '../../shared/form-
 export class ReviewAndSubmit {
   safetyData = computed(() => this.formDataService.getSafetyData());
   yourDetailsData = computed(() => this.formDataService.getYourDetailsData());
+  eligibilityData = computed(() => this.formDataService.getEligibilityData());
 
   constructor(
     private router: Router,
@@ -24,6 +25,10 @@ export class ReviewAndSubmit {
 
   editSafety() {
     this.router.navigate(['/safety']);
+  }
+
+  editEligibility() {
+    this.router.navigate(['/eligibility']);
   }
 
   editYourDetails() {

@@ -23,10 +23,20 @@ export interface IncomeData {
   // Add income form fields as needed
 }
 
+export interface EligibilityData {
+  isAustralianResident?: 'yes' | 'no';
+  hasPatientOver18?: 'yes' | 'no';
+  hasPatientInRelationship?: 'yes' | 'no';
+  isParentOfAllPatient?: 'yes' | 'no';
+  hasPatientUnderWelfareOrder?: 'yes' | 'no';
+  isOtherPartyAustralianResident?: 'yes' | 'no';
+}
+
 export interface FormData {
   safety: SafetyData;
   yourDetails: YourDetailsData;
   income: IncomeData;
+  eligibility: EligibilityData;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -34,14 +44,15 @@ export class FormDataService {
   private formDataSignal = signal<FormData>({
     safety: {},
     yourDetails: {},
-    income: {}
+    income: {},
+    eligibility: {},
   });
 
   // Safety data methods
   setSafetyData(data: SafetyData) {
-    this.formDataSignal.update(current => ({
+    this.formDataSignal.update((current) => ({
       ...current,
-      safety: { ...current.safety, ...data }
+      safety: { ...current.safety, ...data },
     }));
   }
 
@@ -51,9 +62,9 @@ export class FormDataService {
 
   // Your details data methods
   setYourDetailsData(data: YourDetailsData) {
-    this.formDataSignal.update(current => ({
+    this.formDataSignal.update((current) => ({
       ...current,
-      yourDetails: { ...current.yourDetails, ...data }
+      yourDetails: { ...current.yourDetails, ...data },
     }));
   }
 
@@ -63,14 +74,26 @@ export class FormDataService {
 
   // Income data methods
   setIncomeData(data: IncomeData) {
-    this.formDataSignal.update(current => ({
+    this.formDataSignal.update((current) => ({
       ...current,
-      income: { ...current.income, ...data }
+      income: { ...current.income, ...data },
     }));
   }
 
   getIncomeData() {
     return this.formDataSignal().income;
+  }
+
+  // Eligibility data methods
+  setEligibilityData(data: EligibilityData) {
+    this.formDataSignal.update((current) => ({
+      ...current,
+      eligibility: { ...current.eligibility, ...data },
+    }));
+  }
+
+  getEligibilityData() {
+    return this.formDataSignal().eligibility;
   }
 
   // Get all form data
@@ -83,7 +106,8 @@ export class FormDataService {
     this.formDataSignal.set({
       safety: {},
       yourDetails: {},
-      income: {}
+      income: {},
+      eligibility: {},
     });
   }
-} 
+}
