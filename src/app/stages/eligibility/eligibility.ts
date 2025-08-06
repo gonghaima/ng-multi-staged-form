@@ -52,7 +52,10 @@ export class Eligibility {
 
     // Mark section as complete
     this.sectionStatusService.setStatus('eligibility', 'complete');
-    this.sectionStatusService.setStatus('safety', 'notStarted');
+    const currentSafetyStatus = this.sectionStatusService.getStatus('safety');
+    if (currentSafetyStatus === 'cannotStart' || !currentSafetyStatus) {
+      this.sectionStatusService.setStatus('safety', 'notStarted');
+    }
 
     // Navigate to next section or back to landing
     this.router.navigate(['']);
