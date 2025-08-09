@@ -13,7 +13,7 @@ export class WhatYouNeedToKnow {
 
   goToLanding() {
     this.sectionStatus.setStatus('whatYouNeedToKnow', 'complete');
-    this.sectionStatus.setStatus('safety', 'notStarted');
+    this.sectionStatus.setStatus('eligibility', 'notStarted');
     this.router.navigate(['']);
   }
 }

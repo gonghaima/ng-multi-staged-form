@@ -40,6 +40,18 @@ export class Eligibility {
       ...current,
       [field]: value,
     }));
+
+    // If not a resident, clear and ignore the rest of the fields
+    if (field === 'isAustralianResident' && value === 'no') {
+      this.eligibilityData.update((current) => ({
+        ...current,
+        hasPatientOver18: undefined,
+        hasPatientInRelationship: undefined,
+        isParentOfAllPatient: undefined,
+        hasPatientUnderWelfareOrder: undefined,
+        isOtherPartyAustralianResident: undefined,
+      }));
+    }
   }
 
   goBack() {
@@ -52,6 +64,8 @@ export class Eligibility {
 
     // Mark section as complete
     this.sectionStatusService.setStatus('eligibility', 'complete');
+
+    // Unlock Safety if still locked
     const currentSafetyStatus = this.sectionStatusService.getStatus('safety');
     if (currentSafetyStatus === 'cannotStart' || !currentSafetyStatus) {
       this.sectionStatusService.setStatus('safety', 'notStarted');
@@ -63,8 +77,19 @@ export class Eligibility {
 
   isFormValid(): boolean {
     const data = this.eligibilityData();
+
+    // Must answer the first question
+    if (!data.isAustralianResident) {
+      return false;
+    }
+
+    // If not a resident, no further answers required
+    if (data.isAustralianResident === 'no') {
+      return true;
+    }
+
+    // If resident, require all remaining answers
     return !!(
-      data.isAustralianResident &&
       data.hasPatientOver18 &&
       data.hasPatientInRelationship &&
       data.isParentOfAllPatient &&

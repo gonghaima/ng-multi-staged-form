@@ -1,7 +1,7 @@
 <div class="review-container">
   <button class="back-btn" (click)="goToLanding()">&lt; Back</button>
 
-  <h1>Application for illness support</h1>
+  <h1>Application for child support</h1>
   <h2>Review and submit</h2>
   <p class="description">
     Before you submit your application, you need to review all the details
@@ -31,51 +31,27 @@
     <h3>Eligibility</h3>
     <div class="question-row">
       <span class="question">Are you a resident of Australia?</span>
-      <span class="answer"
-        >{{ getYesNoDisplay(eligibilityData().isAustralianResident) }}</span
-      >
+      <span class="answer">{{ getYesNoDisplay(eligibilityData().isAustralianResident) }}</span>
     </div>
-    <div class="question-row">
-      <span class="question"
-        >Are any of the patient you're claiming for over the age of 18?</span
-      >
-      <span class="answer"
-        >{{ getYesNoDisplay(eligibilityData().hasPatientOver18) }}</span
-      >
+    <div class="question-row" *ngIf="eligibilityData().isAustralianResident !== 'no'">
+      <span class="question">Are any of the children you are claiming for over the age of 18?</span>
+      <span class="answer">{{ getYesNoDisplay(eligibilityData().hasPatientOver18) }}</span>
     </div>
-    <div class="question-row">
-      <span class="question"
-        >Are any of the patient you're claiming for married or living in a de
-        facto relationship?</span
-      >
-      <span class="answer"
-        >{{ getYesNoDisplay(eligibilityData().hasPatientInRelationship) }}</span
-      >
+    <div class="question-row" *ngIf="eligibilityData().isAustralianResident !== 'no'">
+      <span class="question">Are any of the children you are claiming for married or living in a de facto relationship?</span>
+      <span class="answer">{{ getYesNoDisplay(eligibilityData().hasPatientInRelationship) }}</span>
     </div>
-    <div class="question-row">
-      <span class="question"
-        >Are you a parent of all the patient you're claiming for?</span
-      >
-      <span class="answer"
-        >{{ getYesNoDisplay(eligibilityData().isParentOfAllPatient) }}</span
-      >
+    <div class="question-row" *ngIf="eligibilityData().isAustralianResident !== 'no'">
+      <span class="question">Are you a parent of all the children you are claiming for?</span>
+      <span class="answer">{{ getYesNoDisplay(eligibilityData().isParentOfAllPatient) }}</span>
     </div>
-    <div class="question-row">
-      <span class="question"
-        >Are any patient you're claiming for cared for under a welfare
-        order?</span
-      >
-      <span class="answer"
-        >{{ getYesNoDisplay(eligibilityData().hasPatientUnderWelfareOrder)
-        }}</span
-      >
+    <div class="question-row" *ngIf="eligibilityData().isAustralianResident !== 'no'">
+      <span class="question">Are any children you are applying for cared for under a welfare order?</span>
+      <span class="answer">{{ getYesNoDisplay(eligibilityData().hasPatientUnderWelfareOrder) }}</span>
     </div>
-    <div class="question-row">
+    <div class="question-row" *ngIf="eligibilityData().isAustralianResident !== 'no'">
       <span class="question">Is the other party a resident of Australia?</span>
-      <span class="answer"
-        >{{ getYesNoDisplay(eligibilityData().isOtherPartyAustralianResident)
-        }}</span
-      >
+      <span class="answer">{{ getYesNoDisplay(eligibilityData().isOtherPartyAustralianResident) }}</span>
     </div>
     <button class="edit-btn" (click)="editEligibility()">
       <span class="edit-icon">✏️</span>

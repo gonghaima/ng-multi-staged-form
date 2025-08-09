@@ -1,7 +1,7 @@
 import { Component, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { FormDataService, SafetyData, YourDetailsData, EligibilityData } from '../../shared/form-data.service';
+import { FormDataService } from '../../shared/form-data.service';
 
 @Component({
   selector: 'app-review-and-submit',
@@ -36,14 +36,12 @@ export class ReviewAndSubmit {
   }
 
   submitApplication() {
-    // Here you would typically send the data to your backend
     console.log('Submitting application with data:', this.formDataService.getAllFormData());
     alert('Application submitted successfully!');
     this.formDataService.clearAllData();
     this.router.navigate(['']);
   }
 
-  // Helper methods for displaying data
   getDisplayValue(value: any): string {
     if (value === undefined || value === null || value === '') {
       return 'Not provided';

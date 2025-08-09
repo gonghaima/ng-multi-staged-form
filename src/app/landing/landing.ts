@@ -25,16 +25,16 @@ export class Landing {
       route: '/what-you-need-to-know',
     },
     {
+      key: 'eligibility',
+      label: 'Eligibility',
+      status: this.sectionStatus.sectionStatus()['eligibility'] ?? 'cannotStart',
+      route: '/eligibility',
+    },
+    {
       key: 'safety',
       label: 'Safety',
       status: this.sectionStatus.sectionStatus()['safety'],
       route: '/safety',
-    },
-    {
-      key: 'eligibility',
-      label: 'Eligibility',
-      status: this.sectionStatus.sectionStatus()['eligibility'],
-      route: '/eligibility',
     },
   ]);
 
@@ -45,7 +45,6 @@ export class Landing {
       status: this.sectionStatus.sectionStatus()['yourDetails'] ?? 'cannotStart',
       route: '/your-details',
     },
-    // Add more for section 2 as needed
   ]);
 
   sections3 = computed(() => [

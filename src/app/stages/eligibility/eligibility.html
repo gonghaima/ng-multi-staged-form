@@ -40,153 +40,155 @@
       </div>
     </div>
 
-    <!-- Patient Over 18 Question -->
-    <div class="question-group">
-      <label class="question-label"
-        >Are any of the patient you're claiming for over the age of 18?</label
-      >
-      <div class="radio-group">
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="hasPatientOver18"
-            value="yes"
-            [checked]="eligibilityData().hasPatientOver18 === 'yes'"
-            (change)="updateField('hasPatientOver18', 'yes')"
-          />
-          <span class="radio-label">Yes</span>
-        </label>
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="hasPatientOver18"
-            value="no"
-            [checked]="eligibilityData().hasPatientOver18 === 'no'"
-            (change)="updateField('hasPatientOver18', 'no')"
-          />
-          <span class="radio-label">No</span>
-        </label>
+    @if (eligibilityData().isAustralianResident !== 'no') {
+      <!-- Patient Over 18 Question -->
+      <div class="question-group">
+        <label class="question-label"
+          >Are any of the patient you're claiming for over the age of 18?</label
+        >
+        <div class="radio-group">
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="hasPatientOver18"
+              value="yes"
+              [checked]="eligibilityData().hasPatientOver18 === 'yes'"
+              (change)="updateField('hasPatientOver18', 'yes')"
+            />
+            <span class="radio-label">Yes</span>
+          </label>
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="hasPatientOver18"
+              value="no"
+              [checked]="eligibilityData().hasPatientOver18 === 'no'"
+              (change)="updateField('hasPatientOver18', 'no')"
+            />
+            <span class="radio-label">No</span>
+          </label>
+        </div>
       </div>
-    </div>
 
-    <!-- Patient in Relationship Question -->
-    <div class="question-group">
-      <label class="question-label"
-        >Are any of the patient you're claiming for married or living in a de
-        facto relationship?</label
-      >
-      <div class="radio-group">
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="hasPatientInRelationship"
-            value="yes"
-            [checked]="eligibilityData().hasPatientInRelationship === 'yes'"
-            (change)="updateField('hasPatientInRelationship', 'yes')"
-          />
-          <span class="radio-label">Yes</span>
-        </label>
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="hasPatientInRelationship"
-            value="no"
-            [checked]="eligibilityData().hasPatientInRelationship === 'no'"
-            (change)="updateField('hasPatientInRelationship', 'no')"
-          />
-          <span class="radio-label">No</span>
-        </label>
+      <!-- Patient in Relationship Question -->
+      <div class="question-group">
+        <label class="question-label"
+          >Are any of the patient you're claiming for married or living in a de
+          facto relationship?</label
+        >
+        <div class="radio-group">
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="hasPatientInRelationship"
+              value="yes"
+              [checked]="eligibilityData().hasPatientInRelationship === 'yes'"
+              (change)="updateField('hasPatientInRelationship', 'yes')"
+            />
+            <span class="radio-label">Yes</span>
+          </label>
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="hasPatientInRelationship"
+              value="no"
+              [checked]="eligibilityData().hasPatientInRelationship === 'no'"
+              (change)="updateField('hasPatientInRelationship', 'no')"
+            />
+            <span class="radio-label">No</span>
+          </label>
+        </div>
       </div>
-    </div>
 
-    <!-- Parent of All Patient Question -->
-    <div class="question-group">
-      <label class="question-label"
-        >Are you a parent of all the patient you're claiming for?</label
-      >
-      <div class="radio-group">
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="isParentOfAllPatient"
-            value="yes"
-            [checked]="eligibilityData().isParentOfAllPatient === 'yes'"
-            (change)="updateField('isParentOfAllPatient', 'yes')"
-          />
-          <span class="radio-label">Yes</span>
-        </label>
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="isParentOfAllPatient"
-            value="no"
-            [checked]="eligibilityData().isParentOfAllPatient === 'no'"
-            (change)="updateField('isParentOfAllPatient', 'no')"
-          />
-          <span class="radio-label">No</span>
-        </label>
+      <!-- Parent of All Patient Question -->
+      <div class="question-group">
+        <label class="question-label"
+          >Are you a parent of all the patient you're claiming for?</label
+        >
+        <div class="radio-group">
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="isParentOfAllPatient"
+              value="yes"
+              [checked]="eligibilityData().isParentOfAllPatient === 'yes'"
+              (change)="updateField('isParentOfAllPatient', 'yes')"
+            />
+            <span class="radio-label">Yes</span>
+          </label>
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="isParentOfAllPatient"
+              value="no"
+              [checked]="eligibilityData().isParentOfAllPatient === 'no'"
+              (change)="updateField('isParentOfAllPatient', 'no')"
+            />
+            <span class="radio-label">No</span>
+          </label>
+        </div>
       </div>
-    </div>
 
-    <!-- Patient Under Welfare Order Question -->
-    <div class="question-group">
-      <label class="question-label"
-        >Are any patient you're claiming for cared for under a welfare order
-        <span class="optional">(optional)</span>?</label
-      >
-      <div class="radio-group">
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="hasPatientUnderWelfareOrder"
-            value="yes"
-            [checked]="eligibilityData().hasPatientUnderWelfareOrder === 'yes'"
-            (change)="updateField('hasPatientUnderWelfareOrder', 'yes')"
-          />
-          <span class="radio-label">Yes</span>
-        </label>
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="hasPatientUnderWelfareOrder"
-            value="no"
-            [checked]="eligibilityData().hasPatientUnderWelfareOrder === 'no'"
-            (change)="updateField('hasPatientUnderWelfareOrder', 'no')"
-          />
-          <span class="radio-label">No</span>
-        </label>
+      <!-- Patient Under Welfare Order Question (optional) -->
+      <div class="question-group">
+        <label class="question-label"
+          >Are any patient you're claiming for cared for under a welfare order
+          <span class="optional">(optional)</span>?</label
+        >
+        <div class="radio-group">
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="hasPatientUnderWelfareOrder"
+              value="yes"
+              [checked]="eligibilityData().hasPatientUnderWelfareOrder === 'yes'"
+              (change)="updateField('hasPatientUnderWelfareOrder', 'yes')"
+            />
+            <span class="radio-label">Yes</span>
+          </label>
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="hasPatientUnderWelfareOrder"
+              value="no"
+              [checked]="eligibilityData().hasPatientUnderWelfareOrder === 'no'"
+              (change)="updateField('hasPatientUnderWelfareOrder', 'no')"
+            />
+            <span class="radio-label">No</span>
+          </label>
+        </div>
       </div>
-    </div>
 
-    <!-- Other Party Australian Resident Question -->
-    <div class="question-group">
-      <label class="question-label"
-        >Is the other party a resident of Australia
-        <span class="optional">(optional)</span>?</label
-      >
-      <div class="radio-group">
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="isOtherPartyAustralianResident"
-            value="yes"
-            [checked]="eligibilityData().isOtherPartyAustralianResident === 'yes'"
-            (change)="updateField('isOtherPartyAustralianResident', 'yes')"
-          />
-          <span class="radio-label">Yes</span>
-        </label>
-        <label class="radio-option">
-          <input
-            type="radio"
-            name="isOtherPartyAustralianResident"
-            value="no"
-            [checked]="eligibilityData().isOtherPartyAustralianResident === 'no'"
-            (change)="updateField('isOtherPartyAustralianResident', 'no')"
-          />
-          <span class="radio-label">No</span>
-        </label>
+      <!-- Other Party Australian Resident Question (optional) -->
+      <div class="question-group">
+        <label class="question-label"
+          >Is the other party a resident of Australia
+          <span class="optional">(optional)</span>?</label
+        >
+        <div class="radio-group">
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="isOtherPartyAustralianResident"
+              value="yes"
+              [checked]="eligibilityData().isOtherPartyAustralianResident === 'yes'"
+              (change)="updateField('isOtherPartyAustralianResident', 'yes')"
+            />
+            <span class="radio-label">Yes</span>
+          </label>
+          <label class="radio-option">
+            <input
+              type="radio"
+              name="isOtherPartyAustralianResident"
+              value="no"
+              [checked]="eligibilityData().isOtherPartyAustralianResident === 'no'"
+              (change)="updateField('isOtherPartyAustralianResident', 'no')"
+            />
+            <span class="radio-label">No</span>
+          </label>
+        </div>
       </div>
-    </div>
+    }
   </form>
 
   <div class="button-row">
