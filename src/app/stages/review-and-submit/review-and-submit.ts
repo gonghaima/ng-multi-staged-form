@@ -42,9 +42,20 @@ export class ReviewAndSubmit {
     this.router.navigate(['']);
   }
 
-  getDisplayValue(value: any): string {
+  getDisplayValue(value: any, field?: string): string {
     if (value === undefined || value === null || value === '') {
       return 'Not provided';
+    }
+    if (field === 'dateOfBirth') {
+      // Format as Australia local date (dd/MM/yyyy)
+      const date = new Date(value);
+      if (!isNaN(date.getTime())) {
+        return date.toLocaleDateString('en-AU', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        });
+      }
     }
     return value.toString();
   }
