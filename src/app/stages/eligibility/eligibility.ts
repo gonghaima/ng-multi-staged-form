@@ -35,7 +35,7 @@ export class Eligibility {
     }
   }
 
-  updateField(field: keyof EligibilityData, value: 'yes' | 'no') {
+  updateField(field: keyof EligibilityData, value: 'yes' | 'no' | undefined) {
     this.eligibilityData.update((current) => ({
       ...current,
       [field]: value,
@@ -88,13 +88,11 @@ export class Eligibility {
       return true;
     }
 
-    // If resident, require all remaining answers
+    // If resident, require all remaining answers except the optiona
     return !!(
       data.hasPatientOver18 &&
       data.hasPatientInRelationship &&
-      data.isParentOfAllPatient &&
-      data.hasPatientUnderWelfareOrder &&
-      data.isOtherPartyAustralianResident
+      data.isParentOfAllPatient
     );
   }
 }
